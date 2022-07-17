@@ -22,8 +22,6 @@ export const renderNode = ({type, props}: HsReactElement, path: number[]): HsRea
             })
          }
          if (typeof renderedNode === "object" && renderedNode !== null && renderedNode.props.children.length) {
-            // const newChildren = transformChildren(props.children, path);
-            // return renderNode({...renderedNode, props: {...renderedNode.props, children: newChildren}}, path)
             return renderNode(renderedNode, path)
          }
          return renderedNode;
@@ -35,7 +33,6 @@ export const renderNode = ({type, props}: HsReactElement, path: number[]): HsRea
          type,
          props: {...props || {}, children: newChildren},
       }
-      // console.log(`<${node.type} class=${node.props.className}>`)
 
       return node;
    })()

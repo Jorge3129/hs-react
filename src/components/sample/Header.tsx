@@ -1,5 +1,5 @@
-import HsReact, {useState} from "../hs-react";
-import {HsFC} from "../hs-react/types/fc";
+import HsReact, {useState} from "../../hs-react";
+import {HsFC} from "../../hs-react/types/fc";
 
 
 const Header: HsFC = () => {

@@ -1,6 +1,6 @@
-import HsReact, {useState} from "../hs-react";
+import HsReact, {useState} from "../../hs-react";
 import UserCard from "./UserCard";
-import {HsFC} from "../hs-react/types/fc";
+import {HsFC} from "../../hs-react/types/fc";
 import Wrapper from "./Wrapper";
 
 export interface IUser {
@@ -29,6 +29,7 @@ const UserList: HsFC<{}> = () => {
            {className: 'user_list'},
            // HsReact.createElement(
            //     Wrapper,
+           //     {},
            users.map(user => HsReact.createElement(
                UserCard,
                {user, deleteUser, key: user.id})

@@ -1,12 +1,18 @@
 import HsReact, {useState} from "./hs-react";
 import './App.css'
-import Header from "./components/Header";
-import UserList from "./components/UserList";
-import Form from "./components/Form";
+import NavBar from "./components/NavBar";
+import {IRoute} from "./components/models/route";
+
+const routes: IRoute[] = [
+   {path: "/", title: "Home"},
+   {path: "/app", title: "App"},
+   {path: "/about", title: "About"},
+   {path: "/profile", title: "Profile"},
+]
 
 function App() {
 
-   const [show, setShow] = useState(false);
+   const [route, setRoute] = useState(routes[0]);
 
    return (
        HsReact.createElement(
@@ -14,16 +20,17 @@ function App() {
            {
               className: 'app',
            },
-           HsReact.createElement(Header, {}),
-           HsReact.createElement(UserList, {}),
+           // `Route: ${route.path}`,
+           HsReact.createElement(NavBar, {routes, setRoute}),
            HsReact.createElement(
-               'button',
-               {
-                  onClick: () => setShow(!show),
-               },
-               show ? "Hide form" : "Show form",
-           ),
-           show && HsReact.createElement(Form, {})
+               'div',
+               null,
+               HsReact.createElement(
+                   'h2',
+                   null,
+                   `${route.title} Page`
+               )
+           )
        )
    );
 }

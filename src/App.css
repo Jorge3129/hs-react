@@ -1,21 +1,22 @@
 * {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 .app {
     text-align: center;
 }
 
-.header {
-    color: white;
-    background-color: blue;
-    height: 100%;
-    padding: 1rem;
-}
+/*.header {*/
+/*    color: white;*/
+/*    background-color: blue;*/
+/*    height: 100%;*/
+/*    padding: 1rem;*/
+/*}*/
 
-.user-card {
-    background-color: aliceblue;
-    border-radius: 0.3rem;
-    padding: 1rem;
-}
+/*.user-card {*/
+/*    background-color: aliceblue;*/
+/*    border-radius: 0.3rem;*/
+/*    padding: 1rem;*/
+/*}*/
