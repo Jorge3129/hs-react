@@ -6,7 +6,7 @@ const root = HsReactDom.createRoot(
     document.getElementById('root') as HTMLElement
 )
 
-root.render(HsReact.createElement(App, null) as any);
+root.render(HsReact.createElement(App, {}) as any);
 
 
 

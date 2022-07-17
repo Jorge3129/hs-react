@@ -2,14 +2,15 @@ export const renderElement = (node: any): any => {
    if (typeof node === "string") {
       return document.createTextNode(node);
    }
-   const {type, props, children} = node;
+   const {type, props} = node;
+   const {children} = props
    const element = document.createElement(type);
    for (const propKey in props) {
-      if (propKey.startsWith("on")) addListener(element, propKey, props[propKey])
+      if (propKey === "children") {
+      } else if (propKey.startsWith("on")) addListener(element, propKey, props[propKey])
       else if (propKey === "style") addStyle(element, props["style"])
-      else if (propKey === "className") {
-         element.setAttribute('class', props[propKey])
-      } else element.setAttribute(propKey, props[propKey]);
+      else if (propKey === "className") element.setAttribute('class', props[propKey])
+      else element.setAttribute(propKey, props[propKey]);
    }
    if (children) {
       for (const child of children) {

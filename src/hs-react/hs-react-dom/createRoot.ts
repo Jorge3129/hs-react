@@ -19,13 +19,28 @@ export class AppRoot {
       const element = renderElement(renderNode(rootNode, []))
       this.root.appendChild(element);
       this.firstRender = false;
+      console.log(compTree.current)
    }
 
    rerender() {
+      // console.log("old before")
+      // console.log(compTree.old)
+      // console.log("current before")
+      // console.log(compTree.current)
+      compTree.old = JSON.parse(JSON.stringify(compTree.current))
+      compTree.current = {}
+      // console.log("old after")
+      // console.log(compTree.old)
+      // console.log("current after")
+      // console.log(compTree.current)
       if (!this.rootNode) return;
       const element = renderElement(renderNode(this.rootNode, []));
       this.root.innerHTML = '';
       this.root.appendChild(element);
+      // console.log("old after after")
+      // console.log(compTree.old)
+      // console.log("current after after")
+      // console.log(compTree.current)
       const input = document.querySelector('input')
       if (!input || !input?.value.length) return;
       setCaretPosition(input, input.value.length)

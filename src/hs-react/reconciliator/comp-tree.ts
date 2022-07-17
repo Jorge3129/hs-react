@@ -1,4 +1,12 @@
-import {IComponent} from "./component"
 
-export const compTree: any = {
+interface ICompTree {
+   current: any
+   old: any
+   path: string
+}
+
+export const compTree: ICompTree = {
+   current: {},
+   old: {},
+   path: ""
 }

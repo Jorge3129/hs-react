@@ -1,0 +1,11 @@
+
+.outer_wrapper {
+    color: cornflowerblue;
+    display: grid;
+    place-content: center;
+}
+
+.inner_wrapper {
+    display: flex;
+    flex-direction: column;
+}

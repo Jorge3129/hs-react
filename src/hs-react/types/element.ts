@@ -5,7 +5,7 @@ export type Key = string | number
 export interface HsReactElement {
    type: string | HsFC;
    props: any;
-   children: HsReactNode[]
+   // children: HsReactNode[]
 }
 
 export type HsReactText = string | number;
