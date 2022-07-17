@@ -1,8 +1,8 @@
-import {FC} from "../hs-react/types/element";
 import HsReact, {useState} from "../hs-react";
+import {HsFC} from "../hs-react/types/fc";
 
 
-const Header: FC = () => {
+const Header: HsFC = () => {
 
    const [count, setCount] = useState("Baaka");
 

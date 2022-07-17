@@ -1,37 +1,34 @@
-import {MyNode} from "../types/element";
+import {HsReactElement, HsReactNode} from "../types/element";
 import {renderElement} from "./renderElement";
+import {renderNode} from "../reconciliator/renderNode";
+import {compTree} from "../reconciliator/comp-tree";
 
 export let appRoot: AppRoot;
 
 export class AppRoot {
 
-   private nodeFactory?: () => MyNode;
-   public firstRender: boolean;
+   public firstRender: boolean
+   private rootNode?: HsReactElement
 
    constructor(private root: HTMLElement) {
-      this.firstRender = true;
+      this.firstRender = true
    }
 
-   render(nodeFactory: () => MyNode) {
-      const element = renderElement(nodeFactory());
-      this.nodeFactory = nodeFactory
+   render(rootNode: HsReactElement) {
+      this.rootNode = rootNode
+      const element = renderElement(renderNode(rootNode, []))
       this.root.appendChild(element);
       this.firstRender = false;
    }
 
    rerender() {
-      if (!this.nodeFactory) return;
-      const element = renderElement(this.nodeFactory());
+      if (!this.rootNode) return;
+      const element = renderElement(renderNode(this.rootNode, []));
       this.root.innerHTML = '';
       this.root.appendChild(element);
       const input = document.querySelector('input')
-      if (!input) return;
+      if (!input || !input?.value.length) return;
       setCaretPosition(input, input.value.length)
-      // input.focus()
-      // const val = input.value
-      // console.log(val)
-      // input.value = val
-
    }
 }
 
@@ -39,7 +36,6 @@ function setCaretPosition(ctrl: any, pos: number) {
    if (ctrl.setSelectionRange) {
       ctrl.focus();
       ctrl.setSelectionRange(pos, pos);
-      // IE8 and below
    } else if (ctrl.createTextRange) {
       const range = ctrl.createTextRange();
       range.collapse(true);

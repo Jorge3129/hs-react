@@ -5,7 +5,7 @@ import UserList from "./components/UserList";
 
 function App() {
 
-   const [count, setCount] = useState(0);
+   const [show, setShow] = useState(false);
    const [name, setName] = useState("");
 
    return (
@@ -14,29 +14,32 @@ function App() {
            {
               className: 'app',
            },
-           // HsReact.createElement(Header, null),
-           // HsReact.createElement(UserList, null),
+           HsReact.createElement(Header, null),
+           HsReact.createElement(UserList, null),
            HsReact.createElement(
                'button',
                {
-                  onClick: () => setCount(count + 1),
+                  onClick: () => setShow(!show),
                },
                "Click me !",
            ),
-           `Count: ${count}`,
-           HsReact.createElement(
-               'input',
-               {
-                  type: "text",
-                  placeholder: "Enter name...",
-                  value: name,
-                  onChange: (e: any) => {
-                     // console.log(e)
-                     setName(e.target.value)
-                  },
-               },
-           ),
-           `Name: ${name}`,
+           show && HsReact.createElement(
+               'div',
+               null,
+               HsReact.createElement(
+                   'input',
+                   {
+                      type: "text",
+                      placeholder: "Enter name...",
+                      value: name,
+                      onChange: (e: any) => {
+                         // console.log(e)
+                         setName(e.target.value)
+                      },
+                   },
+               ),
+               `Name: ${name}`,
+           )
        )
    );
 }

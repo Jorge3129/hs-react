@@ -1,9 +1,19 @@
-export interface ElementNode {
-   type: string
-   props: { [key: string]: any }
-   children: MyNode[]
+import {HsFC} from "./fc";
+
+export type Key = string | number
+
+export interface HsReactElement {
+   type: string | HsFC;
+   props: any;
+   children: HsReactNode[]
 }
 
-export type FC<T = any> = (props: T) => MyNode
+export type HsReactText = string | number;
+export type HsReactChild = HsReactElement | HsReactText;
 
-export type MyNode = ElementNode | string
+export interface HsReactNodeArray extends Array<HsReactNode> {
+}
+
+export type HsReactFragment = {} | HsReactNodeArray;
+
+export type HsReactNode = HsReactChild | boolean | null | undefined | HsReactNodeArray;

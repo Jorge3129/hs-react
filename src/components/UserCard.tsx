@@ -1,11 +1,11 @@
-import {FC} from "../hs-react/types/element";
 import HsReact, {useState} from "../hs-react";
+import {HsFC} from "../hs-react/types/fc";
 
 interface IProps {
    userName: string
 }
 
-const UserCard: FC<IProps> = ({userName}) => {
+const UserCard: HsFC<IProps> = ({userName}) => {
 
    const [count, setCount] = useState(0);
 

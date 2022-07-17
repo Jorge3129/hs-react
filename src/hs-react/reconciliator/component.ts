@@ -3,4 +3,6 @@ export interface IComponent {
    state: any[]
    stateIndex: number
    children: IComponent[]
+   firstRender?: boolean
+   parent?: IComponent
 }

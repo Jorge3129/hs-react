@@ -1,6 +1,4 @@
-import {MyNode} from "../types/element";
-
-export const renderElement = (node: MyNode): any => {
+export const renderElement = (node: any): any => {
    if (typeof node === "string") {
       return document.createTextNode(node);
    }
@@ -13,9 +11,12 @@ export const renderElement = (node: MyNode): any => {
          element.setAttribute('class', props[propKey])
       } else element.setAttribute(propKey, props[propKey]);
    }
-   for (const child of children) {
-      element.appendChild(renderElement(child));
+   if (children) {
+      for (const child of children) {
+         element.appendChild(renderElement(child));
+      }
    }
+
    return element;
 }
 
