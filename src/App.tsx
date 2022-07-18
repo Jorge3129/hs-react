@@ -5,52 +5,59 @@ import {IRoute} from "./components/models/route";
 import {useEffect} from "./hs-react/hs-react/hooks/useEffect";
 import UserList from "./components/UserList";
 import Counter from "./components/Counter";
+import AboutPage from "./components/AboutPage";
 
 const routes: IRoute[] = [
-   {path: "/", title: "Home"},
-   {path: "/app", title: "App", component: UserList},
-   {path: "/about", title: "About"},
-   {path: "/profile", title: "Profile"},
+    {path: "/", title: "Home"},
+    {path: "/app", title: "App"},
+    {path: "/about", title: "About"},
+    {path: "/profile", title: "Profile"},
 ]
 
 function App() {
 
-   const [route, setRoute] = useState(routes[0]);
+    const [route, setRoute] = useState(routes[0]);
 
-   useEffect(() => {
-      // console.log(route)
-   }, [route])
+    useEffect(() => {
+        // console.log(route)
+    }, [route])
 
-   return (
-       HsReact.createElement(
-           'div',
-           {
-              className: 'app',
-           },
-           // `Route: ${route.path}`,
-           HsReact.createElement(NavBar, {routes, setRoute}),
-           HsReact.createElement(
-               'div',
-               null,
-               HsReact.createElement(
-                   'h2',
-                   null,
-                   `${route.title} Page`
-               ),
-               route.title === "App" ?
-                   HsReact.createElement(
-                       UserList,
-                       {}
-                   )
-                   : route.title === "Home" ?
-                       HsReact.createElement(
-                           Counter,
-                           {}
-                       )
-                       : null
-           )
-       )
-   );
+    return (
+        HsReact.createElement(
+            'div',
+            {
+                className: 'app',
+            },
+            // `Route: ${route.path}`,
+            HsReact.createElement(NavBar, {routes, setRoute}),
+            HsReact.createElement(
+                'div',
+                null,
+                HsReact.createElement(
+                    'h2',
+                    null,
+                    `${route.title} Page`
+                ),
+                route.title === "App" ?
+                    HsReact.createElement(
+                        UserList,
+                        {}
+                    )
+                    : route.title === "Home" ?
+                        HsReact.createElement(
+                            Counter,
+                            {}
+                        )
+                        :
+                        route.title === "About" ?
+                            HsReact.createElement(
+                                AboutPage,
+                                {}
+                            )
+                            : null
+            )
+        )
+    );
 }
 
 export default App;
