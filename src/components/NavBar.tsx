@@ -14,9 +14,6 @@ const NavBar: HsFC<IProps> = ({routes, setRoute}) => {
        'nav',
        {
           className: 'navbar',
-          onPushState: (e: any) => {
-             console.log(e)
-          }
        },
        HsReact.createElement(
            'ul',

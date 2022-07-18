@@ -8,6 +8,25 @@
     text-align: center;
 }
 
+button {
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    outline: none;
+    border: none;
+    display: block;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+}
+
+button.danger {
+    background-color: #d14d4d;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
 /*.header {*/
 /*    color: white;*/
 /*    background-color: blue;*/

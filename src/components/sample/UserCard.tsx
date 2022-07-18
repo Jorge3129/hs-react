@@ -17,7 +17,15 @@ const UserCard: HsFC<IProps> = ({user, deleteUser}) => {
 
    return (HsReact.createElement(
            'div',
-           {className: 'user-card'},
+           {
+              className: 'user-card',
+              style: {
+                 backgroundColor: 'aliceblue',
+                 borderRadius: '0.3rem',
+                 margin: '1rem 0',
+                 padding: '1rem'
+              }
+           },
            HsReact.createElement(
                'div',
                null,
@@ -34,8 +42,11 @@ const UserCard: HsFC<IProps> = ({user, deleteUser}) => {
                null,
                HsReact.createElement(
                    'button',
-                   {onClick: () => deleteUser(user.id)},
-                   "Delete !",
+                   {
+                      className: 'danger',
+                      onClick: () => deleteUser(user.id)
+                   },
+                   "Delete",
                ),
            ),
        )

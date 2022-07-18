@@ -1,7 +1,8 @@
+import {IComponent} from "./component";
 
 interface ICompTree {
-   current: any
-   old: any
+   current: {[key: string]: IComponent}
+   old: {[key: string]: IComponent}
    path: string
 }
 

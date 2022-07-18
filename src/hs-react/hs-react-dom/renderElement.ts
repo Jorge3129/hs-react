@@ -1,3 +1,5 @@
+import {convertCamelToDashCase} from "./helpers";
+
 export const renderElement = (node: any): any => {
    if (typeof node === "string") {
       return document.createTextNode(node);
@@ -23,8 +25,8 @@ export const renderElement = (node: any): any => {
 
 const addStyle = (element: HTMLElement, style: { [key: string]: any }) => {
    for (const styleProp in style) {
-      // @ts-ignore
-      element.style[styleProp] = style[styleProp]
+      const dashedStyleProp = convertCamelToDashCase(styleProp);
+      element.style[dashedStyleProp as any] = style[styleProp]
    }
 }
 
