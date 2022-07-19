@@ -1,47 +1,16 @@
 import {HsReactElement, HsReactNode} from "../types/element";
-import {compTree} from "./comp-tree";
+import {renderComponent} from "./renderComponent";
 
 export const renderNode = ({type, props}: HsReactElement, path: number[]): HsReactNode => {
    const res = (() => {
       if (typeof type === "function") {
-         const componentName = type.name + path.join(',')
-         compTree.path = componentName
-         if (!compTree.old[componentName]) {
-            compTree.current[componentName] = {
-               name: componentName,
-               state: [],
-               stateIndex: -1,
-               effectDeps: [],
-               effectDepsIndex: -1,
-               effectCleanup: []
-            };
-         } else {
-            compTree.current[componentName] = JSON.parse(JSON.stringify(compTree.old[componentName]))
-         }
-         compTree.current[componentName].stateIndex = -1
-         compTree.current[componentName].effectDepsIndex = -1
-         const renderedNode = type(props);
-         if (Array.isArray(renderedNode)) {
-            return renderedNode.map((c, i) => {
-               return renderNode(c as any,
-                   //@ts-ignore
-                   [...path, typeof c === "object" && c !== null ? c.props.key : i]
-               )
-            })
-         }
-         if (typeof renderedNode === "object" && renderedNode !== null && renderedNode.props.children.length) {
-            return renderNode(renderedNode, path)
-         }
-         return renderedNode;
+         return renderComponent({type, props}, path);
       }
-
       const newChildren = transformChildren(props.children, path);
-
       const node: HsReactNode = {
          type,
          props: {...props || {}, children: newChildren},
       }
-
       return node;
    })()
    // console.log(res)

@@ -11,7 +11,13 @@ const Form: HsFC<IProps> = () => {
 
    return (HsReact.createElement(
            'form',
-           {className: 'user-form'},
+           {
+              className: 'user-form',
+              onSubmit: (e: any) => {
+                 e.preventDefault();
+                 console.log(name)
+              }
+           },
            HsReact.createElement(
                'div',
                null,

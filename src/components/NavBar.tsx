@@ -1,14 +1,14 @@
 import {HsFC} from "../hs-react/types/fc";
-import HsReact, {useState} from "../hs-react";
+import HsReact from "../hs-react";
 import './styles/NavBar.css'
 import {IRoute} from "./models/route";
 
 interface IProps {
    routes: IRoute[]
-   setRoute: (route: IRoute) => void
+   setRoutePath: (route: string) => void
 }
 
-const NavBar: HsFC<IProps> = ({routes, setRoute}) => {
+const NavBar: HsFC<IProps> = ({routes, setRoutePath}) => {
 
    return HsReact.createElement(
        'nav',
@@ -24,7 +24,8 @@ const NavBar: HsFC<IProps> = ({routes, setRoute}) => {
                   className: 'navbar_list_item',
                   onClick: () => {
                      window.history.pushState(null, "", route.path);
-                     setRoute(route)
+                     setRoutePath(route.path)
+                     // window.dispatchEvent(new Event('popstate'));
                   },
                },
                route.title

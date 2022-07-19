@@ -3,27 +3,32 @@ import UserList from "./UserList";
 import Header from "./Header";
 import Form from "./Form";
 
-function App() {
+const App = () => {
 
    const [show, setShow] = useState(false);
 
    return (
        HsReact.createElement(
-           'div',
-           {
-              className: 'app',
-           },
-           HsReact.createElement(Header, {}),
-           HsReact.createElement(UserList, {}),
+           '',
+           {value: ''},
            HsReact.createElement(
-               'button',
+               'div',
                {
-                  onClick: () => setShow(!show),
+                  className: 'app',
                },
-               show ? "Hide form" : "Show form",
-           ),
-           show && HsReact.createElement(Form, {})
+               HsReact.createElement(Header, {}),
+               HsReact.createElement(UserList, {}),
+               HsReact.createElement(
+                   'button',
+                   {
+                      onClick: () => setShow(!show),
+                   },
+                   show ? "Hide form" : "Show form",
+               ),
+               show && HsReact.createElement(Form, {})
+           )
        )
+
    );
 }
 

@@ -1,22 +1,32 @@
 import {convertCamelToDashCase} from "./helpers";
+import {HsDOMElement} from "../types/element";
 
-export const renderElement = (node: any): any => {
+export const renderElement = (node: HsDOMElement): HTMLElement | Text => {
    if (typeof node === "string") {
       return document.createTextNode(node);
    }
    const {type, props} = node;
-   const {children} = props
+
+   if (type === "fragment") {
+      return props.children.map((child: any) => renderElement(child))
+   }
+
    const element = document.createElement(type);
    for (const propKey in props) {
-      if (propKey === "children") {
-      } else if (propKey.startsWith("on")) addListener(element, propKey, props[propKey])
+      if (propKey === "children") continue;
+      if (propKey.startsWith("on")) addListener(element, propKey, props[propKey])
       else if (propKey === "style") addStyle(element, props["style"])
       else if (propKey === "className") element.setAttribute('class', props[propKey])
       else element.setAttribute(propKey, props[propKey]);
    }
-   if (children) {
-      for (const child of children) {
-         element.appendChild(renderElement(child));
+   if (props?.children) {
+      for (const child of props.children) {
+         const renderedChild = renderElement(child);
+         if (Array.isArray(renderedChild)) {
+            for (const r_child of renderedChild) {
+               element.appendChild(r_child)
+            }
+         } else element.appendChild(renderElement(child));
       }
    }
 

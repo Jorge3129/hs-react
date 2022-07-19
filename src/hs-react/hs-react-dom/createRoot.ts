@@ -16,31 +16,21 @@ export class AppRoot {
 
    render(rootNode: HsReactElement) {
       this.rootNode = rootNode
-      const element = renderElement(renderNode(rootNode, []))
+      const element = renderElement(renderNode(rootNode, []) as any)
       this.root.appendChild(element);
       this.firstRender = false;
       console.log(compTree.current)
    }
 
    rerender() {
-      // console.log("old before")
-      // console.log(compTree.old)
-      // console.log("current before")
-      // console.log(compTree.current)
       compTree.old = JSON.parse(JSON.stringify(compTree.current))
       compTree.current = {}
-      // console.log("old after")
-      // console.log(compTree.old)
-      // console.log("current after")
-      // console.log(compTree.current)
       if (!this.rootNode) return;
-      const element = renderElement(renderNode(this.rootNode, []));
+      const node = renderNode(this.rootNode, []);
+      // console.log(node)
+      const element = renderElement(node as any);
       this.root.innerHTML = '';
       this.root.appendChild(element);
-      // console.log("old after after")
-      // console.log(compTree.old)
-      // console.log("current after after")
-      // console.log(compTree.current)
       const input = document.querySelector('input')
       if (!input || !input?.value.length) return;
       setCaretPosition(input, input.value.length)
@@ -62,5 +52,8 @@ function setCaretPosition(ctrl: any, pos: number) {
 
 export const createRoot = (root: HTMLElement): AppRoot => {
    appRoot = new AppRoot(root)
+   // window.addEventListener('popstate', (e: any) => {
+   //    console.log(e.path[0].location.pathname)
+   // })
    return appRoot;
 }

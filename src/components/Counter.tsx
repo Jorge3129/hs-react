@@ -1,6 +1,6 @@
 import {HsFC} from "../hs-react/types/fc";
 import HsReact, {useState} from "../hs-react";
-import {useEffect} from "../hs-react/hs-react/hooks/useEffect";
+import {useEffect} from "../hs-react";
 
 const Counter: HsFC<{}> = () => {
 
@@ -11,7 +11,7 @@ const Counter: HsFC<{}> = () => {
       //    console.log(count)
       //    setCount(count + 1)
       // }, 500)
-      // console.log("a")
+      // // console.log("a")
       // return () => {
       //    clearInterval(timer)
       // }

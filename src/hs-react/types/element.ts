@@ -8,12 +8,20 @@ export interface HsReactElement {
    // children: HsReactNode[]
 }
 
+export interface HsReactComponent {
+   type: HsFC;
+   props: { [key: string]: any };
+}
+
+export interface HsDOMObjectElement {
+   type: string;
+   props: { [key: string]: any };
+   children: HsDOMElement[]
+}
+
+export type HsDOMElement = HsDOMObjectElement | string
+
 export type HsReactText = string | number;
 export type HsReactChild = HsReactElement | HsReactText;
 
-export interface HsReactNodeArray extends Array<HsReactNode> {
-}
-
-export type HsReactFragment = {} | HsReactNodeArray;
-
-export type HsReactNode = HsReactChild | boolean | null | undefined | HsReactNodeArray;
+export type HsReactNode = HsReactChild | boolean | null | undefined | HsReactNode[];

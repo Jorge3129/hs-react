@@ -8,5 +8,7 @@ const root = HsReactDom.createRoot(
 
 root.render(HsReact.createElement(App, {}) as any);
 
-
-
+// type Routes<T extends string> = (...routes: T[]) => T
+// type MyRoutes = Routes<"/app" | "/profile">
+// type ExtractParam<T> = T extends `/app/chats/:${infer P}` ? P : never
+// type Param = ExtractParam<"/app/chats/:chatId">
